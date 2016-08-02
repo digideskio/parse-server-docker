@@ -74,6 +74,13 @@ let api = new ParseServer(config);
 // Serve the Parse API on the /parse URL prefix
 app.use('/parse', api);
 
+app.get('/status', function(req, res) {
+    res.send({
+        timestamp: new Date(),
+        version: "2.2.17"
+    });
+});
+
 let port = process.env.PORT || 8080;
 app.listen(port, function() {
     console.log(`parse-server-docker running on port ${port}.`);
