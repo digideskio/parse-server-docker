@@ -69,6 +69,35 @@ if (oauthEnabled) {
     config.oauth = oauthConfig;
 }
 
+let pushEnabled = process.env.PUSH_ENABLED;
+if (pushEnabled) {
+    let pushConfig = {};
+
+    let androidEnabled = process.env.PUSH_ANDROID_ENABLED;
+    if (androidEnabled) {
+        let androidConfig = {
+            senderId: requiredParameter(process.env.PUSH_ANDROID_SENDERID, 'You must provide PUSH_ANDROID_SENDERID'),
+            apiKey: requiredParameter(process.env.PUSH_ANDROID_APIKEY, 'You must provide PUSH_ANDROID_APIKEY')
+        };
+
+        pushConfig.android = androidConfig;
+    }
+
+    let iosEnabled = process.env.PUSH_IOS_ENABLED;
+    if (iosEnabled) {
+        let iosConfig = {
+            pfx: requiredParameter(process.env.PUSH_IOS_PFXPATH, 'You must provide PUSH_IOS_PFXPATH'),
+            passphrase: process.env.PUSH_IOS_PASSPHRASE,
+            bundleId: requiredParameter(process.env.PUSH_IOS_BUNDLEID, 'You must provide PUSH_IOS_BUNDLEID'),
+            production: process.env.PUSH_IOS_PRODUCTION ? true : false
+        };
+
+        pushConfig.ios = iosConfig;
+    }
+
+    config.push = pushConfig;
+}
+
 let api = new ParseServer(config);
 
 // Serve the Parse API on the /parse URL prefix
