@@ -71,11 +71,13 @@ if (oauthEnabled) {
 
 let pushEnabled = process.env.PUSH_ENABLED;
 if (pushEnabled) {
-    let pushConfig = {};
+    console.log('Push enabled');
+
+    var pushConfig = {};
 
     let androidEnabled = process.env.PUSH_ANDROID_ENABLED;
     if (androidEnabled) {
-        let androidConfig = {
+        var androidConfig = {
             senderId: requiredParameter(process.env.PUSH_ANDROID_SENDERID, 'You must provide PUSH_ANDROID_SENDERID'),
             apiKey: requiredParameter(process.env.PUSH_ANDROID_APIKEY, 'You must provide PUSH_ANDROID_APIKEY')
         };
@@ -85,7 +87,7 @@ if (pushEnabled) {
 
     let iosEnabled = process.env.PUSH_IOS_ENABLED;
     if (iosEnabled) {
-        let iosConfig = {
+        var iosConfig = {
             pfx: requiredParameter(process.env.PUSH_IOS_PFXPATH, 'You must provide PUSH_IOS_PFXPATH'),
             passphrase: process.env.PUSH_IOS_PASSPHRASE,
             bundleId: requiredParameter(process.env.PUSH_IOS_BUNDLEID, 'You must provide PUSH_IOS_BUNDLEID'),
@@ -97,6 +99,8 @@ if (pushEnabled) {
 
     config.push = pushConfig;
 }
+
+console.log(JSON.stringify(config));
 
 let api = new ParseServer(config);
 

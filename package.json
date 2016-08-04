@@ -1,6 +1,6 @@
 {
   "name": "parse-server-docker",
-  "version": "2.2.17.1",
+  "version": "2.2.17",
   "repository": "https://www.gitlab.com/krushtech/parse-server-docker",
   "description": "Parse Server on Docker",
   "main": "server.js",
