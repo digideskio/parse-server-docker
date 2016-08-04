@@ -16,7 +16,7 @@ let config = {
     // Absolute path to your Cloud Code
     cloud: process.env.CLOUD_CODE_ABS_PATH,
     fileKey: process.env.FILE_KEY,
-    verbose: true
+    verbose: process.env.VERBOSE_LOGGING ? true : false
 }
 
 let azureAccount = process.env.FILE_ADAPTER_AZURE_ACCOUNT;
@@ -110,7 +110,8 @@ app.use('/parse', api);
 app.get('/status', function(req, res) {
     res.send({
         timestamp: new Date(),
-        version: "2.2.17"
+        version: '2.2.17',
+        environment: process.env.ENVIRONMENT || 'Unknown'
     });
 });
 
