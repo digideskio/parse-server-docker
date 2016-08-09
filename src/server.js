@@ -111,7 +111,7 @@ app.get('/status', function(req, res) {
     res.send({
         timestamp: new Date(),
         version: '2.2.17',
-        environment: process.env.ENVIRONMENT || 'Unknown'
+        environment: process.env.NODE_ENV || 'development'
     });
 });
 
