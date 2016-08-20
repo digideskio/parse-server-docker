@@ -3,7 +3,7 @@
 let express = require('express');
 let ParseServer = require('parse-server').ParseServer;
 let AzureStorageAdapter = require('parse-server-azure-storage').AzureStorageAdapter;
-let requiredParameter = require('./RequiredParameter');
+let requiredParameter = require('./RequiredParameter')({emptyStringInvalid: true, nullInvalid: true});
 
 let app = express();
 
@@ -71,8 +71,6 @@ if (oauthEnabled) {
 
 let pushEnabled = process.env.PUSH_ENABLED;
 if (pushEnabled) {
-    console.log('Push enabled');
-
     var pushConfig = {};
 
     let androidEnabled = process.env.PUSH_ANDROID_ENABLED;
@@ -99,8 +97,6 @@ if (pushEnabled) {
 
     config.push = pushConfig;
 }
-
-console.log(JSON.stringify(config));
 
 let api = new ParseServer(config);
 

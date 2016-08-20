@@ -8,11 +8,12 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "parse-server" : "2.2.17",
+    "parse-server": "2.2.17",
     "express": "4.14.0",
-    "parse-server-azure-storage": "1.1.0",
-    "moment": "2.14.1",
-    "lodash": "4.13.1",
-    "google-libphonenumber": "1.0.25"
+    "parse-server-azure-storage": "1.1.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
   }
 }

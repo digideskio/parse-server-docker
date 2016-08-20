@@ -1,12 +1,33 @@
 "use strict";
 
-module.exports = function () {
-    var parameter = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
-    var errorMessage = arguments[1];
+const defaultConfig = {
+    undefinedInvalid: true,
+    falseInvalid: false,
+    nullInvalid: false,
+    emptyStringInvalid: false
+}
 
-    if (!parameter) {
-        throw errorMessage;
-    }
+module.exports = (config) => {
+    config = Object.assign({}, defaultConfig, config);
 
-    return parameter;
+    return (...args) => {
+        if (args.length === 0) {
+            throw new Error('You must pass an argument to check.');
+        }
+
+        var parameter = args[0];
+        var errorMessage = args[1] || 'Parameter not valid.';
+
+        var invalid = false;
+        if (config.undefinedInvalid) { invalid = invalid || parameter === undefined };
+        if (config.falseInvalid) { invalid = invalid || parameter === false };
+        if (config.nullInvalid) { invalid = invalid || parameter === null };
+        if (config.emptyStringInvalid) { invalid = invalid || parameter === '' };
+
+        if (invalid) {
+            throw new Error(errorMessage);
+        }
+
+        return parameter;
+    };
 };
