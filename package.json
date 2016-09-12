@@ -5,7 +5,7 @@
   "description": "Parse Server on Docker",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node server.js",
     "pretest": "tsc tests/*.test.ts --module commonjs --outDir libTests",
     "test": "mocha libTests",
     "prepublish": "typings install env~mocha --global --save"
