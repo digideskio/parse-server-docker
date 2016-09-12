@@ -1,6 +1,6 @@
 {
   "name": "parse-server-docker",
-  "version": "2.2.18",
+  "version": "2.2.19",
   "repository": "https://www.gitlab.com/krushtech/parse-server-docker",
   "description": "Parse Server on Docker",
   "main": "src/server.js",
@@ -11,7 +11,7 @@
     "prepublish": "typings install env~mocha --global --save"
   },
   "dependencies": {
-    "parse-server": "2.2.18",
+    "parse-server": "2.2.19",
     "express": "4.14.0",
     "parse-server-azure-storage": "1.1.0",
     "typescript": "1.8.10"
